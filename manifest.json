@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "AI 对话快速导航助手",
+  "version": "1.2",
+  "description": "为 Gemini 和 ChatGPT 提供沉浸式、靠左对齐的右侧跳转导航栏",
+  "author": "Gemini Thought Partner",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://gemini.google.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "AI 导航助手"
+  }
+}

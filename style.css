@@ -1,0 +1,86 @@
+/* style.css - 增加滚动条支持 */
+
+#gemini-quick-nav {
+  position: fixed;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 40px; 
+  /* 限制最大高度，防止超出屏幕 */
+  max-height: 85vh; 
+  background: transparent;
+  border-radius: 12px;
+  padding: 10px 0;
+  /* 允许垂直滚动 */
+  overflow-y: auto; 
+  overflow-x: hidden;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-sizing: border-box;
+}
+
+/* 隐藏默认滚动条，仅在悬停时显示美化版 */
+#gemini-quick-nav::-webkit-scrollbar {
+  width: 4px;
+}
+#gemini-quick-nav::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+#gemini-quick-nav:hover {
+  width: 260px; 
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e0e0e0;
+}
+
+/* 悬停时显示滚动条滑块 */
+#gemini-quick-nav:hover::-webkit-scrollbar-thumb {
+  background: #dadce0;
+}
+
+.nav-item {
+  position: relative;
+  padding: 8px 15px; 
+  min-height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  transition: all 0.2s;
+}
+
+.nav-item::before {
+  content: '';
+  width: 12px;
+  height: 2px;
+  background-color: #dadce0;
+  border-radius: 2px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.nav-item.active::before {
+  background-color: #1a73e8;
+  width: 18px;
+}
+
+.nav-text {
+  font-size: 13px;
+  color: #444;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s;
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#gemini-quick-nav:hover .nav-text {
+  opacity: 1;
+  transform: translateX(0);
+}
